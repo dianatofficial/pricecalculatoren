@@ -1,7 +1,8 @@
 {
-  "name": "008--proposal-price-calculator-(گیت-هاب)",
+  "name": "academic-price-calculator",
+  "author": "dianatofficial",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "ng serve",

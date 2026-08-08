@@ -1,6 +1,6 @@
 /*
- * Copyright (c) 2024 Dianat | 0935 912 0880. All Rights Reserved.
- * This software is the confidential and proprietary information of Dianat.
+ * Copyright (c) 2024 Dianat (dianatofficial) | 0935 912 0880. All Rights Reserved.
+ * This software is developed and maintained by dianatofficial.
  */
 
 import { bootstrapApplication } from '@angular/platform-browser';
@@ -12,5 +12,3 @@ bootstrapApplication(AppComponent, {
     provideZonelessChangeDetection()
   ]
 }).catch(err => console.error(err));
-
-// AI Studio always uses an `index.tsx` file for all project types.

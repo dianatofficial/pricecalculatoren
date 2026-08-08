@@ -1,6 +1,6 @@
 {
-  "name": "008- price calculator EN EN",
-  "description": "An applet for estimating thesis, proposal, and academic article pricing. Features full bilingual support (English and Persian). Developed by Dianat | 0935 912 0880.",
+  "name": "Academic Services Price Calculator",
+  "description": "Professional web application for estimating academic services, thesis, proposal, and research paper pricing. Developed by dianatofficial | 0935 912 0880.",
   "requestFramePermissions": [],
   "majorCapabilities": [
     "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
