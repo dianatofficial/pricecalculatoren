@@ -1,0 +1,68 @@
+<!-- Copyright (c) 2024 Dianat | 0935 912 0880. All Rights Reserved. -->
+<div class="bg-sky-50 dark:bg-slate-900/50 rounded-2xl p-6 h-full flex flex-col justify-center">
+  <div class="text-center">
+
+    @if (marketPrice() && price() > 0) {
+      <p class="text-lg text-slate-600 dark:text-slate-400 font-medium">{{ langService.t().specialOffer }}</p>
+    } @else {
+      <p class="text-lg text-slate-600 dark:text-slate-400 font-medium">{{ langService.t().estimatedPrice }}</p>
+    }
+    
+    <p class="text-5xl sm:text-6xl font-extrabold my-3 bg-gradient-to-r from-sky-500 to-cyan-400 bg-clip-text text-transparent">
+      {{ price() | number:'1.0-0' }}
+    </p>
+    <p class="text-2xl font-medium text-slate-500 dark:text-slate-400 -mt-2">{{ displayCurrency }}</p>
+
+    @if (marketPrice() && price() > 0) {
+      <div class="mt-8 pt-6 border-t border-sky-200 dark:border-slate-700 text-sm">
+        <h3 class="font-bold text-slate-700 dark:text-slate-300 mb-4 text-center">{{ langService.t().priceComparison }}</h3>
+        <div class="space-y-3 text-slate-600 dark:text-slate-400 max-w-sm mx-auto">
+            <div class="flex justify-between items-center bg-white/50 dark:bg-slate-800/50 p-3 rounded-md text-base">
+              <span class="flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-slate-400 shrink-0" viewBox="0 0 20 20" fill="currentColor"><path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z"></path><path fill-rule="evenodd" d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z" clip-rule="evenodd"></path></svg>
+                <span>{{ langService.t().marketAveragePrice }}</span>
+              </span>
+              <span class="font-mono font-semibold text-slate-500 dark:text-slate-400 line-through">{{ marketPrice() | number:'1.0-0' }}</span>
+            </div>
+            <div class="flex justify-between items-center bg-green-100 dark:bg-green-900/50 p-3 rounded-md text-base text-green-800 dark:text-green-200">
+              <span class="flex items-center gap-2 font-bold">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 shrink-0" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M17.707 9.293a1 1 0 010 1.414l-7 7a1 1 0 01-1.414 0l-7-7A.997.997 0 012 10V5a3 3 0 013-3h10a3 3 0 013 3v5a.997.997 0 01-.293.707zM5 4a1 1 0 00-1 1v5.586l6 6 6-6V5a1 1 0 00-1-1H5z" clip-rule="evenodd"></path><path fill-rule="evenodd" d="M8 8a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"></path></svg>
+                <span>{{ langService.t().yourSavings }}</span>
+              </span>
+              <span class="font-mono font-bold">{{ (marketPrice()! - price()) | number:'1.0-0' }}</span>
+            </div>
+        </div>
+      </div>
+    } @else if(breakdown().length > 0 && price() > 0) {
+      <div class="mt-8 pt-6 border-t border-sky-200 dark:border-slate-700 text-sm">
+        <h3 class="font-bold text-slate-700 dark:text-slate-300 mb-4 text-center">{{ langService.t().calculationDetails }}</h3>
+        <div class="space-y-2 text-slate-600 dark:text-slate-400 max-w-sm mx-auto">
+          @for (item of breakdown(); track $index) {
+            <div class="flex justify-between items-center bg-white/50 dark:bg-slate-800/50 p-2.5 rounded-md text-sm">
+              <span class="text-slate-600 dark:text-slate-300">{{ item.label }}</span>
+              <span class="font-mono font-semibold" 
+                    [class.text-red-600]="item.amount < 0" 
+                    [class.dark:text-red-400]="item.amount < 0"
+                    [class.text-slate-700]="item.amount >= 0" 
+                    [class.dark:text-slate-200]="item.amount >= 0">
+                {{ item.amount >= 0 && !$first ? '+' : '' }}{{ item.amount | number:'1.0-0' }}
+              </span>
+            </div>
+          }
+          <div class="flex justify-between items-center bg-sky-100 dark:bg-sky-900/50 p-3 rounded-md text-base font-bold text-sky-800 dark:text-sky-200 mt-3 !mt-4">
+            <span>{{ langService.t().totalAmount }}</span>
+            <span class="font-mono">{{ price() | number:'1.0-0' }}</span>
+          </div>
+        </div>
+      </div>
+    } @else {
+      <div class="mt-8 pt-6 border-t border-sky-200 dark:border-slate-700 text-sm text-center text-slate-500 dark:text-slate-400">
+        <p>{{ langService.t().completeFormPrompt }}</p>
+      </div>
+    }
+
+    <button (click)="reset()" class="mt-8 py-2 px-6 rounded-lg text-slate-600 dark:text-slate-300 bg-slate-200/60 hover:bg-slate-300/60 dark:bg-slate-700/50 dark:hover:bg-slate-700 transition-colors font-semibold">
+      {{ langService.t().newCalculation }}
+    </button>
+  </div>
+</div>

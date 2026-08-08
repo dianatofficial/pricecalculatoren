@@ -1,0 +1,57 @@
+<!-- Copyright (c) 2024 Dianat | 0935 912 0880. All Rights Reserved. -->
+<div class="grid lg:grid-cols-5 gap-8 animate-fade-in">
+  <!-- Form Section -->
+  <div class="lg:col-span-3 space-y-6">
+    <!-- Title -->
+    <div class="text-center">
+      <h2 class="text-lg font-bold text-slate-700 dark:text-slate-200">
+        {{ langService.t().thesisExtractionDetailsTitle }}
+      </h2>
+    </div>
+
+    <!-- Field of study -->
+    <div>
+      <label for="field-of-study" class="block mb-2 text-md font-semibold text-slate-700 dark:text-slate-200">{{ langService.t().fieldOfStudy }}</label>
+      <select id="field-of-study" [value]="selectedFieldKey()" (change)="onFieldChange($event)" 
+              [class]="'w-full p-3 bg-white dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg text-slate-800 dark:text-slate-200 focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition appearance-none bg-no-repeat ' + (langService.isEn() ? 'bg-[right_0.75rem_center] pl-3 pr-8 text-left' : 'bg-[left_0.75rem_center] pr-3 pl-8 text-right')" 
+              style="background-image: url(&quot;data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e&quot;);">
+        <option value="" disabled>{{ langService.t().selectOptionPrompt }}</option>
+        @for (item of fields(); track item.key) { <option [value]="item.key">{{ item.label }}</option> }
+      </select>
+    </div>
+
+    <!-- Article Type -->
+    <div>
+      <label for="article-level" class="block mb-2 text-md font-semibold text-slate-700 dark:text-slate-200">{{ langService.t().articleLevel }}</label>
+      <select id="article-level" [value]="selectedArticleLevelKey()" (change)="onArticleLevelChange($event)" 
+              [class]="'w-full p-3 bg-white dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg text-slate-800 dark:text-slate-200 focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition appearance-none bg-no-repeat ' + (langService.isEn() ? 'bg-[right_0.75rem_center] pl-3 pr-8 text-left' : 'bg-[left_0.75rem_center] pr-3 pl-8 text-right')" 
+              style="background-image: url(&quot;data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e&quot;);">
+        <option value="" disabled>{{ langService.t().selectOptionPrompt }}</option>
+        @for (item of articleLevels(); track item.key) { <option [value]="item.key">{{ item.label }}</option> }
+      </select>
+    </div>
+
+    <!-- Time -->
+    <div>
+      <label for="delivery-time" class="block mb-2 text-md font-semibold text-slate-700 dark:text-slate-200">{{ langService.t().deliveryTime }}</label>
+      <select id="delivery-time" [value]="timeMultiplier()" (change)="onTimeChange($event)" 
+              [class]="'w-full p-3 bg-white dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg text-slate-800 dark:text-slate-200 focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition appearance-none bg-no-repeat ' + (langService.isEn() ? 'bg-[right_0.75rem_center] pl-3 pr-8 text-left' : 'bg-[left_0.75rem_center] pr-3 pl-8 text-right')" 
+              style="background-image: url(&quot;data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e&quot;);">
+        <option value="0" disabled>{{ langService.t().selectOptionPrompt }}</option>
+        @for (item of deliveryTimes(); track item.value) { <option [value]="item.value">{{ item.label }}</option> }
+      </select>
+    </div>
+
+     <div class="pt-4 text-sm text-slate-500 dark:text-slate-400">
+        <p [class.text-left]="langService.isEn()" [class.text-right]="langService.isFa()">
+            <strong>{{ langService.t().thesisExtractionNoteTitle }}</strong> {{ langService.t().thesisExtractionNoteContent }}
+        </p>
+    </div>
+
+  </div>
+
+  <!-- Result Section -->
+  <div class="lg:col-span-2">
+    <app-result [price]="ourPrice()" [marketPrice]="marketPrice()" (onReset)="resetForm()" />
+  </div>
+</div>

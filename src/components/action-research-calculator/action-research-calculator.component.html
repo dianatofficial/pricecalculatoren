@@ -1,0 +1,75 @@
+<!-- Copyright (c) 2024 Dianat | 0935 912 0880. All Rights Reserved. -->
+<div class="grid lg:grid-cols-5 gap-8 animate-fade-in">
+  <!-- Form Section -->
+  <div class="lg:col-span-3 space-y-6">
+    <!-- Title -->
+    <div class="text-center">
+      <h2 class="text-lg font-bold text-slate-700 dark:text-slate-200">
+        {{ langService.t().actionResearchDetailsTitle }}
+      </h2>
+    </div>
+
+    <!-- Action Research Area -->
+    <div>
+      <label for="action-research-area" class="block mb-2 text-md font-semibold text-slate-700 dark:text-slate-200">{{ langService.t().actionResearchArea }}</label>
+      <select id="action-research-area" [value]="selectedAreaKey()" (change)="onAreaChange($event)" 
+              [class]="'w-full p-3 bg-white dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg text-slate-800 dark:text-slate-200 focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition appearance-none bg-no-repeat ' + (langService.isEn() ? 'bg-[right_0.75rem_center] pl-3 pr-8 text-left' : 'bg-[left_0.75rem_center] pr-3 pl-8 text-right')" 
+              style="background-image: url(&quot;data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e&quot;);">
+        <option value="" disabled>{{ langService.t().selectOptionPrompt }}</option>
+        @for (item of actionResearchAreas(); track item.key) { <option [value]="item.key">{{ item.label }}</option> }
+      </select>
+    </div>
+
+    <!-- Specific Level -->
+     <div>
+      <label for="action-research-level" class="block mb-2 text-md font-semibold text-slate-700 dark:text-slate-200">{{ langService.t().specificLevel }}</label>
+      <select id="action-research-level" [value]="levelMultiplier()" (change)="onLevelChange($event)" [disabled]="!selectedAreaKey()" 
+              [class]="'w-full p-3 bg-white dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg text-slate-800 dark:text-slate-200 focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition appearance-none bg-no-repeat disabled:bg-slate-100 dark:disabled:bg-slate-700/50 disabled:cursor-not-allowed ' + (langService.isEn() ? 'bg-[right_0.75rem_center] pl-3 pr-8 text-left' : 'bg-[left_0.75rem_center] pr-3 pl-8 text-right')" 
+              style="background-image: url(&quot;data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e&quot;);">
+        <option value="0" disabled>{{ langService.t().selectAreaFirst }}</option>
+        @for (item of currentLevels(); track item.value) { <option [value]="item.value">{{ item.label }}</option> }
+      </select>
+    </div>
+
+    <!-- Difficulty & Time -->
+    <div class="grid sm:grid-cols-2 gap-4">
+        <div>
+          <div class="flex items-center gap-2 mb-2">
+            <label for="difficulty" class="text-sm font-semibold text-slate-700 dark:text-slate-200">{{ langService.t().workComplexity }}</label>
+            <div class="group relative">
+               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-slate-400 dark:text-slate-500 shrink-0 cursor-help" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd" />
+                </svg>
+                <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-64 p-3 bg-slate-800 dark:bg-slate-900 text-white text-xs rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-10">
+                  <p [class.text-left]="langService.isEn()" [class.text-right]="langService.isFa()">
+                    {{ langService.t().actionResearchTooltip }}
+                  </p>
+                  <div class="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-3 h-3 bg-slate-800 dark:bg-slate-900 rotate-45"></div>
+                </div>
+            </div>
+          </div>
+          <select id="difficulty" [value]="difficultyMultiplier()" (change)="onDifficultyChange($event)" 
+                  [class]="'w-full p-3 bg-white dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg text-slate-800 dark:text-slate-200 focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition appearance-none bg-no-repeat ' + (langService.isEn() ? 'bg-[right_0.75rem_center] pl-3 pr-8 text-left' : 'bg-[left_0.75rem_center] pr-3 pl-8 text-right')" 
+                  style="background-image: url(&quot;data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e&quot;);">
+            <option value="0" disabled>{{ langService.t().selectOptionPrompt }}</option>
+            @for (item of difficultyTypes(); track item.value) { <option [value]="item.value">{{ item.label }}</option> }
+          </select>
+        </div>
+
+        <div>
+          <label for="action-research-time" class="block mb-2 text-sm font-semibold text-slate-700 dark:text-slate-200">{{ langService.t().deliveryTime }}</label>
+          <select id="action-research-time" [value]="timeMultiplier()" (change)="onTimeChange($event)" 
+                  [class]="'w-full p-3 bg-white dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg text-slate-800 dark:text-slate-200 focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition appearance-none bg-no-repeat ' + (langService.isEn() ? 'bg-[right_0.75rem_center] pl-3 pr-8 text-left' : 'bg-[left_0.75rem_center] pr-3 pl-8 text-right')" 
+                  style="background-image: url(&quot;data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e&quot;);">
+            <option value="0" disabled>{{ langService.t().selectOptionPrompt }}</option>
+            @for (item of deliveryTimes(); track item.value) { <option [value]="item.value">{{ item.label }}</option> }
+          </select>
+        </div>
+    </div>
+  </div>
+
+  <!-- Result Section -->
+  <div class="lg:col-span-2">
+    <app-result [price]="ourPrice()" [marketPrice]="marketPrice()" [breakdown]="calculationBreakdown()" (onReset)="resetForm()" />
+  </div>
+</div>
