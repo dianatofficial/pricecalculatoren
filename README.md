@@ -1,3 +1,66 @@
+# Academic Services Price Calculator
+
+A comprehensive web application for estimating and calculating prices for thesis/dissertation writing, academic proposals, research papers (ISI / Scopus / Domestic), thesis-to-article extraction, action research, and article summaries with volume discounts and timeline estimates.
+
+---
+
+## 🚀 Key Features
+
+1. **Full Bilingual Support (English & Persian):**
+   - Instant language switching (Bilingual Toggle) preserving user inputs and state.
+   - Fully responsive design with Dark and Light Mode support.
+
+2. **Specialized Calculation Modules:**
+   - **Thesis / Dissertation:** Academic degree selection (Master's / Ph.D.), field of study, specialized research type, service quality tiers (Standard, Professional, Premium), university type, and delivery timeline.
+   - **Academic Proposal:** Accurate estimation of proposal writing costs with options for work scope (Comprehensive Literature Review, Preliminary Studies, etc.).
+   - **Research Papers (ISI / Scopus / National Conferences / Research Journals):** Pricing based on paper level/indexing, language (Persian or Direct English authoring), and urgency.
+   - **Thesis-to-Article Extraction:** Estimation for extracting, rewriting, formatting, and journal-ready paper preparation.
+   - **Action Research:** Cost estimation based on grade/level, field, and implementation complexity.
+   - **Article Summary & Literature Review:** Support for volume discounts based on the number of articles.
+
+3. **Detailed Cost Breakdown & Market Comparison:**
+   - Detailed breakdown showing base price, field coefficients, extra service costs, and applied discounts.
+   - Instant price comparison with average market prices and calculated savings.
+
+---
+
+## 🛠 Tech Stack
+
+- **Framework:** Angular (Zoneless Architecture & Signals)
+- **Styling:** Tailwind CSS
+- **Language:** TypeScript
+
+---
+
+## ⚙️ Installation & Development Setup
+
+### 1. Install Dependencies
+```bash
+npm install
+```
+
+### 2. Start Development Server
+```bash
+npm run dev
+```
+The application will be accessible at `http://localhost:3000`.
+
+### 3. Production Build
+```bash
+npm run build
+```
+
+---
+
+## 👤 Developer & Identifier
+
+- **Fingerprint / Identifier:** `dianatofficial`
+- **Developer:** dianatofficial
+
+<br>
+<hr>
+<br>
+
 # سامانه محاسبه‌گر قیمت خدمات دانشگاهی و پژوهشی
 
 این وب‌اپلیکیشن کاربردی و جامع جهت محاسبه، برآورد و استعلام هزینه پروپوزال، پایان‌نامه (کارشناسی ارشد و دکتری)، مقالات علمی، استخراج مقاله از پایان‌نامه، اقدام‌پژوهی و خلاصه‌نویسی مقالات به همراه محاسبه دقیق تخفیف‌های حجمی و برآورد زمان تحویل طراحی و پیاده‌سازی شده است.
@@ -34,8 +97,6 @@
 
 ## ⚙️ راهنمای اجرا و راه‌اندازی
 
-برای اجرای پروژه روی محیط محلی، مراحل زیر را انجام دهید:
-
 ### ۱. نصب وابستگی‌ها
 ```bash
 npm install
@@ -54,9 +115,7 @@ npm run build
 
 ---
 
-## 👤 توسعه‌دهنده و صاحب اثر
+## 👤 توسعه‌دهنده و شناسه اثر
 
 - **شناسه اثر:** `dianatofficial`
-- **توسعه‌دهنده:** Dianat | dianatofficial
-- **ارتباط و پشتیبانی:** 09359120880
-- **حق مالکیت:** © 2024 Dianat (dianatofficial). تمامی حقوق این نرم‌افزار محفوظ است.
+- **توسعه‌دهنده:** dianatofficial
